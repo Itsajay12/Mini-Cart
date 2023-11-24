@@ -41,3 +41,5 @@ def login(request):
         else:
             messages.warning(request,"Null Values are not allowed")
     return render(request,'login.html')
+def delivery_details(request):
+    return render(request,'order.html')
