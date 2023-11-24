@@ -10,3 +10,6 @@ class DeliveryAddress(models.Model):
     address=models.TextField()
     state=models.CharField(max_length=30)
     country=models.CharField(max_length=30)
+    def __str__(self) :
+        return f"{self.username}"
+    
