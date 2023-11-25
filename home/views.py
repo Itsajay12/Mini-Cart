@@ -55,3 +55,5 @@ def logout_user(request):
         print("called")
         logout(request)
     return redirect(login_user)
+def product_page(request):
+    return render(request,'product_page.html')
