@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
+@login_required(login_url="login/")
 def index(request):
     return render(request,'index.html')
 def register(request):
@@ -43,3 +44,7 @@ def login(request):
     return render(request,'login.html')
 def delivery_details(request):
     return render(request,'order.html')
+def logout_user(request):
+    if request.method=="POST":
+        logout(request)
+        return redirect(login)
