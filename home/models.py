@@ -8,6 +8,7 @@ class DeliveryAddress(models.Model):
     altmob=models.IntegerField(unique=True)
     pincode=models.IntegerField()
     address=models.TextField()
+    dtype=models.CharField(max_length=30)
     state=models.CharField(max_length=30)
     country=models.CharField(max_length=30)
     def __str__(self) :

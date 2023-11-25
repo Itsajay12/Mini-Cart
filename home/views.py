@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
-@login_required(login_url="login/")
+@login_required(login_url="/login")
 def index(request):
     return render(request,'index.html')
 def register(request):
@@ -22,14 +22,14 @@ def register(request):
                 query.set_password(passw)
                 query.save()
                 messages.success(request,"Succesfully Registered")
-                return redirect(login)
+                return redirect(login_user)
         else:
             messages.info(request,'Password Dont MAtch')
             return redirect(register)
 
 
     return render(request,'register.html')
-def login(request):
+def login_user(request):
     if request.method=="POST":
         username=request.POST['uname']
         password=request.POST['password']
@@ -38,13 +38,20 @@ def login(request):
             if query is None:
                 messages.error(request,"Invalid Credentials")
             else:
+                login(request,query)
                 return redirect(index)
         else:
             messages.warning(request,"Null Values are not allowed")
     return render(request,'login.html')
 def delivery_details(request):
+    if request.method=="POST":
+        mob=request.POST['mob']
+        alt_mob=request.POST['altermob']
+        pincode=request.POST['pincode']
+        address=request.POST['address']
     return render(request,'order.html')
 def logout_user(request):
-    if request.method=="POST":
+    if request.method=="post":
+        print("called")
         logout(request)
-        return redirect(login)
+    return redirect(login_user)

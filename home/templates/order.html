@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
   {% load static %}
-  <section class="h-100 bg-dark">
-    <div class="container py-5 h-100">
+ 
+  <section class="h-75 bg-dark">
+    <div class="container py-5 h-75">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
           <div class="card card-registration my-4">
             <div class="row g-0">
               <div class="col-xl-6 d-none d-xl-block">
-                <img src="{% static 'Images/delivery.avif' %}" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                <img src="{% static 'Images/delivery.avif' %}" alt="Sample photo" width="536vw" height="114vh" class="img-fluid img1" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" style="height: 114vh;width: 36vw;"/>
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
@@ -58,20 +59,31 @@
 
                     <div class="row">
                       <div class="col-md-5 mb-4">
-                        <select class="form-select" aria-label="Default select example">
-                          <option selected>State</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select class="form-select" aria-label="Default select example" name="state">
+                          <option selected value="kerala">Kerala</option>
+                          <option value="tn">Tamil Nadu</option>
+                          <option value="mumbai">Mumbai</option>
+                          <option value="punjab">Punjab</option>
                         </select>
                       </div>
                       <div class="col-md-5">
                         <select class="form-select" aria-label="Default select example">
-                          <option selected>Country</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          <option selected>India</option>
+                          <option value="1">America</option>
+                          <option value="2">Jappan</option>
+                          <option value="3">Africa</option>
                         </select>
+                      </div>
+                    </div>
+                    <div class="row ">
+                      <div class="col-md-12 col-lg-8 bg-dark d-flex justify-content-evenly align-items-center">
+                        <label class="form-label fs-5" for="form3Example1m1">Delivery Type :</label>
+
+                        <input type="radio" class="btn-check text-dark " name="options-base" id="option5" autocomplete="off" checked />
+                        <label class="btn" for="option5">Office</label>
+
+                        <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" />
+                        <label class="btn" for="option6">Home</label>
                       </div>
                     </div>
 
