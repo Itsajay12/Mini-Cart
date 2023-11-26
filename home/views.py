@@ -39,29 +39,72 @@ def login_user(request):
                 messages.error(request,"Invalid Credentials")
             else:
                 login(request,query)
-                return redirect(index)
+                return redirect(delivery_details)
         else:
             messages.warning(request,"Null Values are not allowed")
     return render(request,'login.html')
 @login_required(login_url="/login")
 def delivery_details(request):
-    if request.method=="POST":
-        mob=request.POST['mob']
-        alt_mob=request.POST['altermob']
-        pincode=request.POST['pincode']
-        address=request.POST.get('address')
-        state=request.POST.get('state')
-        country=request.POST.get('country')
-        deliverytype=request.POST.get('dt')
-        if mob !="" and alt_mob !="" and pincode !="" and address !="" and  state !="" and country !="" and deliverytype!="":
-          query=DeliveryAddress.objects.create(mobile=mob,altmob=alt_mob,pincode=pincode,address=address,dtype=deliverytype,state=state,country=country)
-          if query.is_valid():
-              query.save()
-          else:
-              print("error occured")
+    try:
+        existing_delivery_address = DeliveryAddress.objects.get(username=request.user)
+        
+        if existing_delivery_address:
+            return render(request, 'index.html')
         else:
-            messages.info(request,"No fields can have null fields")
-    return render(request,'order.html')
+            if request.method == "POST":
+                mob = request.POST['mob']
+                alt_mob = request.POST['altermob']
+                pincode = request.POST['pincode']
+                address = request.POST.get('address')
+                state = request.POST.get('state')
+                country = request.POST.get('country')
+                deliverytype = request.POST.get('dt')
+
+                if mob and alt_mob and pincode and address and state and country and deliverytype:
+                    query = DeliveryAddress.objects.create(
+                        username=request.user,
+                        mobile=mob,
+                        altmob=alt_mob,
+                        pincode=pincode,
+                        address=address,
+                        dtype=deliverytype,
+                        state=state,
+                        country=country
+                    )
+                    messages.success(request, "Delivery address added successfully.")
+                    return render(request, 'index.html')
+                else:
+                    messages.info(request, "No fields can have null values.")
+            return render(request, 'order.html')
+    except DeliveryAddress.DoesNotExist:
+        if request.method == "POST":
+            mob = request.POST['mob']
+            alt_mob = request.POST['altermob']
+            pincode = request.POST['pincode']
+            address = request.POST.get('address')
+            state = request.POST.get('state')
+            country = request.POST.get('country')
+            deliverytype = request.POST.get('dt')
+
+            if mob and alt_mob and pincode and address and state and country and deliverytype:
+                query = DeliveryAddress.objects.create(
+                    username=request.user,
+                    mobile=mob,
+                    altmob=alt_mob,
+                    pincode=pincode,
+                    address=address,
+                    dtype=deliverytype,
+                    state=state,
+                    country=country
+                )
+                messages.success(request, "Delivery address added successfully.")
+                return render(request, 'index.html')
+            else:
+                messages.info(request, "No fields can have null values.")
+        return render(request, 'order.html')
+    except Exception as e:
+        messages.warning(request, f"Error occurred: {e}")
+        return render(request, 'order.html') 
 def logout_user(request):
     if request.method=="POST":
         
