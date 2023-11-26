@@ -1,8 +1,13 @@
-/* TEMPLATE STYLES */
 
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+
+*{
+  background-color: linear-gradient(180deg,#fde1ff , #e1ffea22 60%);
+}
 main {
     padding-top: 3rem;
     padding-bottom: 2rem;
+  
   }
   
   .widget-wrapper {
@@ -21,7 +26,8 @@ main {
   }
   
   .navbar {
-    background-color: #414a5c;
+    background-color: #17b076;
+    color: black;
   }
   
   footer.page-footer {

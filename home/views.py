@@ -71,6 +71,7 @@ def delivery_details(request):
                         state=state,
                         country=country
                     )
+                    query.save()
                     messages.success(request, "Delivery address added successfully.")
                     return render(request, 'index.html')
                 else:
