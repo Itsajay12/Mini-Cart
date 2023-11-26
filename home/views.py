@@ -48,12 +48,19 @@ def delivery_details(request):
         mob=request.POST['mob']
         alt_mob=request.POST['altermob']
         pincode=request.POST['pincode']
-        address=request.POST['address']
+        address=request.POST.get('address')
+        state=request.POST.get('state')
+        country=request.POST.get('country')
+        deliverytype=request.POST.get('dt')
+        if mob !="" and alt_mob !="" and pincode !="" and address !="" and  state !="" and country !="" and deliverytype!="":
+          query=
+        else:
+            messages.info(request,"No fields can have null fields")
     return render(request,'order.html')
 def logout_user(request):
-    if request.method=="post":
-        print("called")
+    if request.method=="POST":
+        
         logout(request)
-    return redirect(login_user)
+    return redirect('login')
 def product_page(request):
     return render(request,'product_page.html')

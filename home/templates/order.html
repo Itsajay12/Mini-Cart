@@ -51,7 +51,7 @@
                     <div class="row">
                       <div class="col-md-12 mb-4">
                         <div class="form-outline">
-                          <input type="text" id="form3Example1m1" class="form-control form-control-lg" name="address    " required />
+                          <input type="text" id="form3Example1m1" class="form-control form-control-lg" name="address" required />
                           <label class="form-label" for="form3Example1m1">Address</label>
                         </div>
                       </div>
@@ -67,11 +67,11 @@
                         </select>
                       </div>
                       <div class="col-md-5">
-                        <select class="form-select" aria-label="Default select example">
-                          <option selected>India</option>
-                          <option value="1">America</option>
-                          <option value="2">Jappan</option>
-                          <option value="3">Africa</option>
+                        <select class="form-select" aria-label="Default select example" name="country">
+                          <option selected value="india">India</option>
+                          <option value="america">America</option>
+                          <option value="jappan">Jappan</option>
+                          <option value="africa">Africa</option>
                         </select>
                       </div>
                     </div>
@@ -79,10 +79,10 @@
                       <div class="col-md-12 col-lg-8 bg-dark d-flex justify-content-evenly align-items-center">
                         <label class="form-label fs-5" for="form3Example1m1">Delivery Type :</label>
 
-                        <input type="radio" class="btn-check text-dark " name="options-base" id="option5" autocomplete="off" checked />
+                        <input type="radio" class="btn-check text-dark " name="dt" id="option5" autocomplete="off" checked  value="office"/>
                         <label class="btn" for="option5">Office</label>
 
-                        <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" />
+                        <input type="radio" class="btn-check" name="dt" id="option6" autocomplete="off" value="home" />
                         <label class="btn" for="option6">Home</label>
                       </div>
                     </div>

@@ -1,31 +1,180 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mini Cart</title>
-    <link href="{% static "css/register.css" %}" rel="stylesheet">
-    <link href="{% static "css/index.css" %}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   </head>
   <body>
-   {% block content %}
-   
-   
-   {% endblock content %}
- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script>
+    <header>
+      <nav class="navbar navbar-toggleable-md navbar-dark">
+        <div class="container">
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <a class="navbar-brand" href="#"><strong>Mini Cart</strong></a>
+          <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Pricing</a>
+              </li>
+              <li class="nav-item dropdown btn-group">
+                <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
+                <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                  <a class="dropdown-item">Contact</a>
+                  <a class="dropdown-item">Billing adress</a>
+                  <a class="dropdown-item">Discounts</a>
+                </div>
+              </li>
+              {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
 
-    new WOW().init();
-</script> 
-</body>
+                    <button class="nav-link btn-danger" type="Submit">Logout</button>
+                  </form>
+                </li>
+              {% endif %}
+            </ul>
+            <form class="form-inline waves-effect waves-light">
+              <input class="form-control" type="text" placeholder="Search" />
+            </form>
+          </div>
+        </div>
+      </nav>
+      <!-- /.Navbar -->
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="page-footer center-on-small-only">
+      <!-- Footer Links -->
+      <div class="container-fluid">
+        <div class="row">
+          <!-- First column -->
+          <div class="col-md-3 offset-lg-1 hidden-lg-down">
+            <h5 class="title">ABOUT MATERIAL DESIGN</h5>
+            <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
+
+            <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.</p>
+          </div>
+          <!-- /.First column -->
+
+          <hr class="hidden-md-up" />
+
+          <!-- Second column -->
+          <div class="col-lg-2 col-md-4 offset-lg-1">
+            <h5 class="title">About us</h5>
+            <ul>
+              <li>
+                <a href="#!">Adress</a>
+              </li>
+              <li>
+                <a href="#!">Team</a>
+              </li>
+              <li>
+                <a href="#!">Phone number</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.Second column -->
+
+          <hr class="hidden-md-up" />
+
+          <!-- Third column -->
+          <div class="col-lg-2 col-md-4">
+            <h5 class="title">Metrics</h5>
+            <ul>
+              <li>
+                <a href="#!">Shoe sizes</a>
+              </li>
+              <li>
+                <a href="#!">T-shirt sizes</a>
+              </li>
+              <li>
+                <a href="#!">Sweatshirt sizes</a>
+              </li>
+              <li>
+                <a href="#!">Pants sizes</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.Third column -->
+
+          <hr class="hidden-md-up" />
+
+          <!-- Fourth column -->
+          <div class="col-lg-2 col-md-4">
+            <h5 class="title">Useful links</h5>
+            <ul>
+              <li>
+                <a href="#!">Pricing</a>
+              </li>
+              <li>
+                <a href="#!">Delivery</a>
+              </li>
+              <li>
+                <a href="#!">Countries</a>
+              </li>
+              <li>
+                <a href="#!">Returns</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.Fourth column -->
+        </div>
+      </div>
+      <!-- /.Footer Links -->
+
+      <hr />
+
+      <!-- Call to action -->
+      <div class="call-to-action">
+        <h4>Created with Material Design for Bootstrap</h4>
+        <br />
+        <h5>Get our UI KIT for free</h5>
+        <ul>
+          <li>
+            <a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-info">Download now!</a>
+          </li>
+          <li>
+            <a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-default">Learn more</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.Call to action -->
+
+      <!-- Copyright -->
+      <div class="footer-copyright">
+        <div class="container-fluid">
+          © 2015 Copyright: <a href="http://www.MDBootstrap.com">MDBootstrap.com</a>
+        </div>
+      </div>
+      <!-- /.Copyright -->
+    </footer>
+    <!-- /.Footer -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+      new WOW().init()
+    </script>
+  </body>
 </html>
