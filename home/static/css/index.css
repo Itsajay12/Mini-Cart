@@ -34,3 +34,12 @@ main {
     background-color: #414a5c;
     margin-top: 2rem;
   }
+.popular-card{
+
+}
+.popular-img{
+  padding-left: 50px;
+  justify-content: center;
+  height: 500px!important;
+  width: 200px;
+}
