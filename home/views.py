@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-
+from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User,auth
@@ -43,6 +43,7 @@ def login_user(request):
         else:
             messages.warning(request,"Null Values are not allowed")
     return render(request,'login.html')
+@login_required(login_url="/login")
 def delivery_details(request):
     if request.method=="POST":
         mob=request.POST['mob']
@@ -53,7 +54,11 @@ def delivery_details(request):
         country=request.POST.get('country')
         deliverytype=request.POST.get('dt')
         if mob !="" and alt_mob !="" and pincode !="" and address !="" and  state !="" and country !="" and deliverytype!="":
-          query=
+          query=DeliveryAddress.objects.create(mobile=mob,altmob=alt_mob,pincode=pincode,address=address,dtype=deliverytype,state=state,country=country)
+          if query.is_valid():
+              query.save()
+          else:
+              print("error occured")
         else:
             messages.info(request,"No fields can have null fields")
     return render(request,'order.html')
