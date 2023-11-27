@@ -13,4 +13,11 @@ class DeliveryAddress(models.Model):
     country=models.CharField(max_length=30)
     def __str__(self) :
         return f"{self.username}"
-    
+class Products(models.Model):
+    pro_name=models.CharField( max_length=50)
+    pro_desc=models.CharField( max_length=50)
+    pro_price=models.IntegerField()
+    pro_brand=models.CharField(max_length=50)
+    pro_rating=models.FloatField()
+    pro_image=models.ImageField( upload_to='uploads', height_field=None, width_field=None, max_length=None)
+    is_available=models.BooleanField(default=True)
