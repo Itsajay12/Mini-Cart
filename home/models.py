@@ -17,7 +17,12 @@ class Products(models.Model):
     pro_name=models.CharField( max_length=50)
     pro_desc=models.CharField( max_length=50)
     pro_price=models.IntegerField()
+    category=models.CharField(max_length=50)
     pro_brand=models.CharField(max_length=50)
     pro_rating=models.FloatField()
     pro_image=models.ImageField( upload_to='uploads', height_field=None, width_field=None, max_length=None)
     is_available=models.BooleanField(default=True)
+class Cart(models.Model):
+    username=models.ForeignKey(User,on_delete=models.CASCADE)
+    item_name=models.CharField( max_length=50)
+    item_price=models.IntegerField()

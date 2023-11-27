@@ -112,8 +112,14 @@ def logout_user(request):
         logout(request)
     return redirect('login')
 
-def product_page(request):
-    query=Products.objects.all()
+def product_page(request,category):
+    query=Products.objects.filter(category=category)
     
 
     return render(request,'product_page.html',{"query":query})
+@login_required(login_url='/login')
+def add_cart(request,item):
+    query=Products.objects.filter(pro_name=item)
+    if query:
+        print("called",query.pro_name)
+        query2=Cart.objects.create(username=request.user,item_name=query.pro_name,item_price=query.pro_price)

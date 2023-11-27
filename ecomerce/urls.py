@@ -25,7 +25,8 @@ urlpatterns = [
     path('login/',login_user,name="login"),
     path('orderdetails/',delivery_details,name="delivery"),
     path('logout/',logout_user,name="logout"),
-    path('productpage/',product_page,name="product")
+    path('productpage/<str:category>',product_page,name="product"),
+    path('add_cart/<str:item>',add_cart,name="add_cart")
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
