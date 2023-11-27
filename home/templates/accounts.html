@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>Heloo {{ request.user }}</p>
+    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No of items</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for val in query %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ val.item_name }}</td>
+                    <td>{{ val.item_price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock  %}
+
+

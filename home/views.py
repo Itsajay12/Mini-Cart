@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -119,7 +119,14 @@ def product_page(request,category):
     return render(request,'product_page.html',{"query":query})
 @login_required(login_url='/login')
 def add_cart(request,item):
-    query=Products.objects.filter(pro_name=item)
-    if query:
-        print("called",query.pro_name)
-        query2=Cart.objects.create(username=request.user,item_name=query.pro_name,item_price=query.pro_price)
+    product = get_object_or_404(Products, pro_name=item)
+    if product:
+        
+        query2=Cart.objects.create(username=request.user,item_name=product.pro_name,item_price=product.pro_price)
+    return redirect(account)
+@login_required(login_url='/login')
+def account(request):
+    query=Cart.objects.filter(username=request.user)
+ 
+    return render(request,'accounts.html',{"query":query})
+    
