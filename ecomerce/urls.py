@@ -27,7 +27,9 @@ urlpatterns = [
     path('logout/',logout_user,name="logout"),
     path('productpage/<str:category>',product_page,name="product"),
     path('add_cart/<str:item>',add_cart,name="add_cart"),
-    path('account/',account,name="account")
+    path('account/',account,name="account"),
+    path('remove/<int:id>',remove_cart,name="remove")
+    
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
