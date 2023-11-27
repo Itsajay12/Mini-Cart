@@ -111,5 +111,9 @@ def logout_user(request):
         
         logout(request)
     return redirect('login')
+
 def product_page(request):
-    return render(request,'product_page.html')
+    query=Products.objects.all()
+    
+
+    return render(request,'product_page.html',{"query":query})
