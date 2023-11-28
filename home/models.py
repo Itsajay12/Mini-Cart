@@ -26,3 +26,5 @@ class Cart(models.Model):
     username=models.ForeignKey(User,on_delete=models.CASCADE)
     item_name=models.CharField( max_length=50)
     item_price=models.IntegerField()
+class DeliverProducts(models.Model):
+    username=models.ForeignKey
