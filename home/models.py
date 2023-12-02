@@ -27,4 +27,10 @@ class Cart(models.Model):
     item_name=models.CharField( max_length=50)
     item_price=models.IntegerField()
 class DeliverProducts(models.Model):
-    username=models.ForeignKey
+    username=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(Products,on_delete=models.CASCADE)
+    orderd_at=models.DateTimeField( auto_now_add=True)
+    quantity=models.IntegerField()
+    paymentmod=models.CharField( max_length=50,default="COD")
+    total_amount=models.BooleanField()
+    Status=models.CharField( max_length=50,default="pending")

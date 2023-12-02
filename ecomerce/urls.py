@@ -28,7 +28,8 @@ urlpatterns = [
     path('productpage/<str:category>',product_page,name="product"),
     path('add_cart/<str:item>',add_cart,name="add_cart"),
     path('account/',account,name="account"),
-    path('remove/<int:id>',remove_cart,name="remove")
+    path('remove/<int:id>',remove_cart,name="remove"),
+    path('billing/<int:id>',billing,name='billing')
     
 ]
 if settings.DEBUG:

@@ -131,3 +131,16 @@ def remove_cart(request,id):
     if query:
         messages.info(request,"item removed")
     return redirect(account)
+@login_required(login_url='/login')
+def billing(request,id):
+    
+    if request.method=="POST":
+        quantity=request.POST.get('quantity')
+        query=Products.objects.filter(id=id)
+        for val in query:
+            proname=val.pro_name
+            proprice=val.pro_price
+            
+        totalamount=proprice*quantity
+        query2=DeliverProducts.objects.create(username=request.user,product=proname,quantity=quantity,paymentmod="COD",total_amount=totalamount)
+    return render(request,'billing.html')
